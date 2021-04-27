@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # local app
     'blog',
     'pages',
+    'articles',
 
     # third-party app
     'crispy_forms',
@@ -161,3 +162,5 @@ EMAIL_HOST_PASSWORD = 'whkjyduqrgxbqpdl'
 EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
+
+TIME_ZONE = 'Africa/Lagos'
