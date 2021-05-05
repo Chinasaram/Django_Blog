@@ -155,9 +155,9 @@ DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 
 EMAIL_HOST = 'smtp.gmail.com'
 
-EMAIL_HOST_USER = 'dummy.user712@gmail.com'
+EMAIL_HOST_USER = 'pratz.blog1@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'whkjyduqrgxbqpdl'
+EMAIL_HOST_PASSWORD = 'gidpyxkkcasldilo'
 
 EMAIL_PORT = 587
 
