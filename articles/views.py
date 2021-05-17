@@ -6,19 +6,21 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import (
     UpdateView, DeleteView, CreateView
 ) 
-from django.urls import reverse_lazy # new
-from .models import Article
+from django.urls import reverse_lazy 
+from .models import Article, Comment
+from .forms import CommentForm
+
 
 
 
 class ArticleListView(
-    LoginRequiredMixin, ListView
+    ListView
 ):
     model = Article
     template_name = 'article_list.html'
 
 class ArticleDetailView(
-    LoginRequiredMixin, DetailView
+    DetailView
 ): 
     model = Article
     template_name = 'article_detail.html'
@@ -31,6 +33,7 @@ class ArticleUpdateView(
     template_name = 'article_edit.html'
 
     def test_func(self): 
+        +360.12 
         obj = self.get_object()
         return obj.author == self.request.user
 
@@ -54,6 +57,17 @@ class ArticleCreateView(
 
     def form_valid(self, form): # new
         form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class AddCommentView(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'add_comment.html'
+
+
+    def form_valid(self, form):
+        form.instance.article_id = self.kwargs['pk']
         return super().form_valid(form)
 
 

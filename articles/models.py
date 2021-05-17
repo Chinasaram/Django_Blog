@@ -25,14 +25,12 @@ class Comment(models.Model): # new
         on_delete=models.CASCADE,
         related_name='comments'
     )
-    comment = models.CharField(max_length=140)
-    author = models.ForeignKey(
-        get_user_model(),
-        on_delete=models.CASCADE,
-    )
+    comment = models.TextField()    #changed the charfield to a textfield
+    author = models.CharField(max_length=150)
+    date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.comment
+        return '%s - %s' % (self.article.title, self.author)
 
     def get_absolute_url(self):
         return reverse('article_list')

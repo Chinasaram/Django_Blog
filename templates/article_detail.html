@@ -8,6 +8,22 @@
   </div>
 
   <p><a href="{% url 'article_edit' article.pk %}">Edit</a> |
-    <a href="{% url 'article_delete' article.pk %}">Delete</a></p>
+    <a href="{% url 'article_delete' article.pk %}">Delete</a> |
+    <a href="{% url 'add_comment' article.pk %}">Add Comment</a></p>
   <p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
+  <br/>
+    {% if not article.comments.all %}
+        No Comments... <a href="{% url 'add_comment' article.pk %}">Add Comment</a>
+    {% else %}
+        <u><h6>{{ article.comments.count }} Comments</h6></u>
+        {% for comment in article.comments.all %}
+        <br/>
+            <strong style="color: rgb(15, 127, 172)">
+                {{ comment.author }} -
+            </strong>
+                {{ comment.date_added }}
+            <br/>
+            {{ comment.comment | linebreaks }}
+        {% endfor %}
+    {% endif %}
 {% endblock content %}

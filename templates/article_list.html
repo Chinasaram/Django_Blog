@@ -6,25 +6,13 @@
   {% for article in object_list %}
     <div class="card">
       <div class="card-header">
-        <span class="font-weight-bold">{{ article.title }}</span> &middot;
-        <span class="text-muted">by {{ article.author }}
-        | {{ article.date }}</span>
+        <span class="font-weight-bold">{{ article.title }}</span> 
+        <span class="text-muted">Author: {{ article.author }}</span>
+        <br/><br/>
+        <button class="btn btn-primary ml-2" type="submit">
+          <a style="color:white" href="{% url 'article_detail' article.pk %}">Read More →</a>
+        </button>
       </div>
-      <div class="card-body"> 
-        <p>{{ article.body }}</p>
-        <a href="{% url 'article_edit' article.pk %}">Edit</a> |
-        <a href="{% url 'article_delete' article.pk %}">Delete</a>
-      </div>
-      <div class="card-footer">
-        {% for comment in article.comments.all %}
-        <p>
-          <span class="font-weight-bold">
-            {{ comment.author }} &middot;
-          </span>
-          {{ comment }}
-        </p>
-      {% endfor %}
     </div>
-    <br />
   {% endfor %}
 {% endblock content %}
